@@ -108,26 +108,26 @@ int sumOfNodes(Node *root){
 }
 
 int main(){
-    
-    Node *root;
-    init(root);
-    root = newNode(0);
-    root->left = newNode(1);
-    root->right = newNode(2);
-    root->left->left = newNode(3);
-    root->left->left->left = newNode(4);
-    root->left->left->right = newNode(5);
-    root->left->right = newNode(6);
-    root->left->right->left = newNode(7);
-    root->right->left = newNode(8);
-    root->right->left->left = newNode(9);
-    root->right->left->right = newNode(10);
+    Node* t1 = create2(4, nullptr, nullptr);
+    Node* t2 = create2(5, nullptr, nullptr);
+    Node* t3 = create2(7, nullptr, nullptr);
+    Node* t4 = create2(9, nullptr, nullptr);
+    Node* t5 = create2(10, nullptr, nullptr);
+    Node* t6 = create2(3, t1, t2);
+    Node* t7 = create2(6, t3, nullptr);
+    Node* t8 = create2(8, t4, t5);
+    Node* t9 = create2(1, t6, t7);
+    Node* t10 = create2(2, t8, nullptr);
+    Node* root = create2(0, t9, t10);
 
-    cout << bTreeHeight(root) << endl;
-    cout << numberOfNodes(root) << endl;
-    cout << sumOfNodes(root) << endl;
+    cout << "Binary Tree Height: " << bTreeHeight(root) << endl;
+    cout << "Number of Nodes in Binary Tree: " << numberOfNodes(root) << endl;
+    cout << "Sum of All Nodes in Binary Tree: " << sumOfNodes(root) << endl;
 
+    cout << "PreOrder traversal: ";
     preOrder(root);
+    cout << endl << "InOrder traversal: ";
     inOrder(root);
+    cout << endl << "PostOrder traversal: ";
     postOrder(root);
 }
