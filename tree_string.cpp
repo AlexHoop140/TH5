@@ -11,7 +11,9 @@ struct Node{
     Node *right;
 };
 
-
+void init(Node *&root){
+    root = new Node();
+}
 
 Node* newNode(dataType n){
     Node* node = new Node;
@@ -52,7 +54,7 @@ void preOrder(Node* root){
     }
 }
 
-void deleteTree(Node* node)
+void deleteTree(Node*& node)
 {
     if (node == NULL) return;
  
@@ -80,7 +82,9 @@ Node *search(Node *root, dataType str){
 
 int main(){
     Node *bst;
-    bst = newNode("abd");
+    init(bst);
+    addNode(bst, "abd");
+    // bst = newNode("abd");
     // bst->Data = "abd";
     addNode(bst, "zb");
     addNode(bst, "a");
@@ -96,7 +100,7 @@ int main(){
     // cout << bst->Data;
     preOrder(bst);
     cout << endl;
-    if(search(bst, "t") != nullptr)
+    if(search(bst, "k") != nullptr)
         cout << "Co";
     else
         cout << "Khong co";

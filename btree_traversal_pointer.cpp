@@ -141,7 +141,7 @@ int main(){
     Node* t8 = create2(8, t4, t5);
     Node* t9 = create2(1, t6, t7);
     Node* t10 = create2(2, t8, nullptr);
-    Node* root = create2(0, t9, t10);
+    Node* root = create2(0, t9, t10); 
 
     cout << "Binary Tree Height: " << bTreeHeight(root) << endl;
     cout << "Number of Nodes in Binary Tree: " << numberOfNodes(root) << endl;
