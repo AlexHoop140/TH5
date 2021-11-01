@@ -12,6 +12,10 @@ struct Node{
     Node *right;
 };
 
+void init(Node* root){
+    root = new Node();
+}
+
 Node* newNode(dataType n){
     Node* node = new Node();
 
@@ -22,21 +26,12 @@ Node* newNode(dataType n){
     return node;
 }
 
-void preOrderWithoutRecursion(Node *root){
-
-    Node *p = root;
-    stack<Node*> ptr_list;
-    while(p != NULL || !ptr_list.empty()){
-        while(p != NULL){
-            cout << p->Data << " ";
-            ptr_list.push(p);
-            p = p->left;
-        }
-
-        p = ptr_list.top();
-        ptr_list.pop();
-        p = p->right;
-    }
+Node* create2(dataType val, Node* left, Node* right){
+    Node* n = new Node();
+    n->Data = val;
+    n->left = left;
+    n->right = right;
+    return n;
 }
 
 void preOrder(Node* root){
@@ -55,24 +50,6 @@ void inOrder(Node *root){
     }
 }
 
-void inOrderWithoutRecursion(Node *root){
-
-    Node *p = root;
-    stack<Node*> ptr_list;
-    while(p != NULL || !ptr_list.empty()){
-        while(p != NULL){
-            ptr_list.push(p);
-            p = p->left;
-        }
-
-        p = ptr_list.top();
-        ptr_list.pop();
-        cout << p->Data << " ";
-        p = p->right;
-    }
-        
-}
-
 void postOrder(Node *root){
     if(root != NULL){
         postOrder(root->left);
@@ -81,30 +58,9 @@ void postOrder(Node *root){
     }
 }
 
-void postOrderWithoutRecursion(Node *root){
-    Node *p = root;
-    Node *last_visited = NULL;
-    stack<Node*> ptr_list;
 
-    while((p != NULL) && (last_visited != root)){
-        while((p != NULL) && (p != last_visited)){
-            ptr_list.push(p);
-            p = p->left;
-        }
 
-        p = ptr_list.top();
-        ptr_list.pop();
-
-        if((p->right == NULL) || (p->right == last_visited)){
-            cout << p->Data << " ";
-            last_visited = p;
-        }else{
-            ptr_list.push(p);
-            p = p->right;
-        }
-    }
-}
-
+/*
 Node *insert(Node *root, int key){
     if(root == NULL)
         return newNode(key);
@@ -124,70 +80,7 @@ void input(Node *&root, int n){
         root = insert(root, key);
     }
 }
-
-/* Given a non-empty binary search tree, return the node
-with minimum key value found in that tree. Note that the
-entire tree does not need to be searched. */
-Node* minValueNode(Node* node)
-{
-    Node* current = node;
- 
-    /* loop down to find the leftmost leaf */
-    while (current && current->left != NULL)
-        current = current->left;
- 
-    return current;
-}
-
-Node* deleteNode(Node* root, int key)
-{
-    // base case
-    if (root == NULL)
-        return root;
- 
-    // If the key to be deleted is
-    // smaller than the root's
-    // key, then it lies in left subtree
-    if (key < root->Data)
-        root->left = deleteNode(root->left, key);
- 
-    // If the key to be deleted is
-    // greater than the root's
-    // key, then it lies in right subtree
-    else if (key > root->Data)
-        root->right = deleteNode(root->right, key);
- 
-    // if key is same as root's key, then This is the node
-    // to be deleted
-    else {
-        // node has no child
-        if (root->left==NULL and root->right==NULL)
-            return NULL;
-       
-        // node with only one child or no child
-        else if (root->left == NULL) {
-            Node* temp = root->right;
-            delete (root);
-            return temp;
-        }
-        else if (root->right == NULL) {
-            Node* temp = root->left;
-            delete (root);
-            return temp;
-        }
- 
-        // node with two children: Get the inorder successor
-        // (smallest in the right subtree)
-        Node* temp = minValueNode(root->right);
- 
-        // Copy the inorder successor's content to this node
-        root->Data = temp->Data;
- 
-        // Delete the inorder successor
-        root->right = deleteNode(root->right, temp->Data);
-    }
-    return root;
-}
+*/
 
 int bTreeHeight(Node *root){
     int leftTreeHeight = 0, rightTreeHeight  = 0;
@@ -215,7 +108,10 @@ int sumOfNodes(Node *root){
 }
 
 int main(){
-    Node *root = newNode(0);
+    
+    Node *root;
+    init(root);
+    root = newNode(0);
     root->left = newNode(1);
     root->right = newNode(2);
     root->left->left = newNode(3);
@@ -231,24 +127,7 @@ int main(){
     cout << numberOfNodes(root) << endl;
     cout << sumOfNodes(root) << endl;
 
-    // Node* root = newNode(10);
-    // root->left = newNode(8);
-    // root->right = newNode(2);
-    // root->left->left = newNode(3);
-    // root->left->right = newNode(5);
-
-    // Node *root = new Node;
-    // root = NULL;
-    // root = insert(root, 5);
-    // root = insert(root, 1);
-    // root = insert(root, 6);
-    // int n; 
-    // cout << "Nhap so phan tu cho cay: ";
-    // cin >> n;
-    // input(root, n);
-
-    // preOrder(root);
-    // inOrder(root);
-    
-    // preOrder(root->right);
+    preOrder(root);
+    inOrder(root);
+    postOrder(root);
 }
