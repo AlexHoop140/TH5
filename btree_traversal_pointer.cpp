@@ -119,6 +119,18 @@ void deleteTree(Node* node)
 }
 
 int main(){
+/*
+
+                     0
+                  /      \
+                1           2
+               /  \        / 
+              3    6       8   
+            /  \   /      / \
+           4    5  7      9  10
+
+*/
+
     Node* t1 = create2(4, nullptr, nullptr);
     Node* t2 = create2(5, nullptr, nullptr);
     Node* t3 = create2(7, nullptr, nullptr);
