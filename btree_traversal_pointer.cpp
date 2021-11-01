@@ -107,6 +107,17 @@ int sumOfNodes(Node *root){
     return root->Data + sumOfNodes(root->right) + sumOfNodes(root->left);
 }
 
+void deleteTree(Node* node)
+{
+    if (node == NULL) return;
+ 
+    /* first delete both subtrees */
+    deleteTree(node->left);
+    deleteTree(node->right);
+     
+    delete node;
+}
+
 int main(){
     Node* t1 = create2(4, nullptr, nullptr);
     Node* t2 = create2(5, nullptr, nullptr);
@@ -130,4 +141,6 @@ int main(){
     inOrder(root);
     cout << endl << "PostOrder traversal: ";
     postOrder(root);
+
+    deleteTree(root);
 }
