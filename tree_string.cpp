@@ -84,8 +84,6 @@ int main(){
     Node *bst;
     init(bst);
     addNode(bst, "abd");
-    // bst = newNode("abd");
-    // bst->Data = "abd";
     addNode(bst, "zb");
     addNode(bst, "a");
     addNode(bst, "cb");
@@ -97,7 +95,7 @@ int main(){
     addNode(bst, "trung");
     addNode(bst, "ptl");
     addNode(bst, "tpa");
-    // cout << bst->Data;
+
     preOrder(bst);
     cout << endl;
     if(search(bst, "k") != nullptr)
