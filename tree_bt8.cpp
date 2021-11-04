@@ -147,8 +147,8 @@ void deleteTree(Node* node)
 int main(){
 /*
 
-                     0
-                  /      \
+                      0
+                  /       \
                 1           2
                /  \          / \
               3    6        8    12
@@ -173,15 +173,17 @@ int main(){
 
     tagParent(root);
 
+    cout << "--- Check sibling of 1 and 2 ---" << endl;
     if (checkDNA(root, locateNode(root, 1), locateNode(root, 2)) == true){
         cout << "Those nodes have the same father node" << endl;
     } else
         cout << "Those nodes DO NOT have the same father node" << endl;
 
+    cout << "--- Check ancestor of 9 and 1 ---" << endl;
     if (checkAncestor(locateNode(root, 9), locateNode(root, 1)) == true)
-        cout << "YES" << endl;
+        cout << "YES, 1 is ancestor of 9" << endl;
     else
-        cout << "NO" << endl;
+        cout << "1 is NOT ancestor of 9" << endl;
 
     cout << "Number of node with only one leaf: " << countNodeWithOneLeaf(root);
     cout << endl;
