@@ -96,11 +96,15 @@ int main(){
     addNode(bst, "ptl");
     addNode(bst, "tpa");
 
+    cout << "PreOrder of BST :" << endl; 
     preOrder(bst);
     cout << endl;
-    if(search(bst, "k") != nullptr)
-        cout << "Co";
+    string inp;
+    cout << "TYPE IN VALUE TO SEARCH: ";
+    getline(cin, inp);
+    if(search(bst, inp) != nullptr)
+        cout << "FOUND";
     else
-        cout << "Khong co";
+        cout << "NOT FOUND";
     deleteTree(bst);
 }
