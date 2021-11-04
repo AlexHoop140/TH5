@@ -54,6 +54,22 @@ void preOrder(Node* root){
     }
 }
 
+void InOrder(Node* root){
+    if(root != NULL){
+        InOrder(root->left);
+        cout << root->Data << " ";
+        InOrder(root->right);
+    }
+}
+
+void PostOrder(Node* root){
+    if(root != NULL){
+        PostOrder(root->left);
+        PostOrder(root->right);
+        cout << root->Data << " ";
+    }
+}
+
 void deleteTree(Node*& node)
 {
     if (node == NULL) return;
@@ -79,6 +95,35 @@ Node *search(Node *root, dataType str){
     }
 }
 
+dataType DeleteMin(Node *&root){
+	dataType k;
+	if(root->left == NULL){
+		k = root->Data;
+		root = root->right;
+		return k;
+	}
+	else return DeleteMin(root->left);
+}
+
+void DeleteNode(dataType x, Node *&root){
+	if(root!=NULL)
+		if(x < root->Data)	
+			DeleteNode(x, root->left);
+		else 
+			if(x > root->Data)	
+				DeleteNode(x,root->right);
+			else
+				if((root->left==NULL) && (root->right==NULL))
+					root = NULL;
+				else
+					if(root->left == NULL)	
+						root = root->right;
+					else 
+						if(root->right == NULL)	
+							root = root->left;
+						else
+                        	root->Data = DeleteMin(root->right);
+}
 
 int main(){
     Node *bst;
@@ -99,12 +144,29 @@ int main(){
     cout << "PreOrder of BST :" << endl; 
     preOrder(bst);
     cout << endl;
+    
+    cout << "InOrder of BST :" << endl; 
+    InOrder(bst);
+    cout << endl;
+    
+    cout << "PostOrder of BST :" << endl; 
+    PostOrder(bst);
+    cout << endl;
+
     string inp;
     cout << "TYPE IN VALUE TO SEARCH: ";
     getline(cin, inp);
     if(search(bst, inp) != nullptr)
-        cout << "FOUND";
+        cout << "FOUND" << endl;
     else
-        cout << "NOT FOUND";
+        cout << "NOT FOUND" << endl;
+
+    string inp2;
+    cout << "TYPE IN VALUE TO DELETE: ";
+    getline(cin, inp2);
+    DeleteNode(inp2, bst);
+    cout << "Tree after deleting" << endl;
+    preOrder(bst);
+    
     deleteTree(bst);
 }
