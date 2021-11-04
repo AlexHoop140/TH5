@@ -154,7 +154,7 @@ int main(){
     cout << endl;
 
     string inp;
-    cout << "TYPE IN VALUE TO SEARCH: ";
+    cout << "\n TYPE IN VALUE TO SEARCH: ";
     getline(cin, inp);
     if(search(bst, inp) != nullptr)
         cout << "FOUND" << endl;
@@ -162,10 +162,10 @@ int main(){
         cout << "NOT FOUND" << endl;
 
     string inp2;
-    cout << "TYPE IN VALUE TO DELETE: ";
+    cout << "\n TYPE IN VALUE TO DELETE: ";
     getline(cin, inp2);
     DeleteNode(inp2, bst);
-    cout << "Tree after deleting" << endl;
+    cout << "\n Tree after deleting" << endl;
     preOrder(bst);
     
     deleteTree(bst);
